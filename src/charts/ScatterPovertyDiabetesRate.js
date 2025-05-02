@@ -5,7 +5,7 @@ const ScatterPovertyDiabetesRate = () => {
   const [plotData, setPlotData] = useState([]);
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv')
+    fetch('https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv')
       .then(res => res.text())
       .then(csv => {
         const rows = csv.split('\n').slice(1);
