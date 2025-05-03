@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SDV_diabetes_dashboard/static/css/main.68761a25.css",
-    "main.js": "/SDV_diabetes_dashboard/static/js/main.05124ee1.js",
+    "main.js": "/SDV_diabetes_dashboard/static/js/main.e3eda6aa.js",
     "static/js/453.5784af86.chunk.js": "/SDV_diabetes_dashboard/static/js/453.5784af86.chunk.js",
     "index.html": "/SDV_diabetes_dashboard/index.html",
     "main.68761a25.css.map": "/SDV_diabetes_dashboard/static/css/main.68761a25.css.map",
-    "main.05124ee1.js.map": "/SDV_diabetes_dashboard/static/js/main.05124ee1.js.map",
+    "main.e3eda6aa.js.map": "/SDV_diabetes_dashboard/static/js/main.e3eda6aa.js.map",
     "453.5784af86.chunk.js.map": "/SDV_diabetes_dashboard/static/js/453.5784af86.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.68761a25.css",
-    "static/js/main.05124ee1.js"
+    "static/js/main.e3eda6aa.js"
   ]
 }
