@@ -6,7 +6,7 @@ const Heatmap = () => {
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv')
+    fetch('https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv')
       .then(res => res.text())
       .then(csv => {
         const rows = csv.split('\n').slice(1);
@@ -69,9 +69,9 @@ const Heatmap = () => {
             text: customText,
             hoverinfo: 'text',
             colorscale: [
-              [0, '#5cd6c0'],   // green
-              [0.5, '#f2e94e'], // yellow
-              [1, '#f94144']    // red-orange
+              [0, '#5cd6c0'],
+              [0.5, '#f2e94e'],
+              [1, '#f94144']
             ],
             reversescale: false,
             colorbar: {
@@ -89,8 +89,8 @@ const Heatmap = () => {
         data={heatmapData}
         layout={{
           title: 'Difference in Patient Density (Diabetic - Non-Diabetic)',
-          xaxis: { title: 'Mean Commute Time (binned)', automargin: true },
-          yaxis: { title: 'Age (binned)', automargin: true },
+          xaxis: { title: 'Mean Commute Time (Minutes, Binned)', automargin: true },
+          yaxis: { title: 'Patient Age (Years, Binned)', automargin: true },
           height: 600,
         }}
       />

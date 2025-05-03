@@ -5,7 +5,7 @@ const PieChartIncomeDiabetes = () => {
   const [pieData, setPieData] = useState([]);
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv')
+    fetch('https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv')
       .then((res) => res.text())
       .then((csv) => {
         const rows = csv.split('\n').slice(1);
@@ -44,7 +44,15 @@ const PieChartIncomeDiabetes = () => {
           values.push(brackets[range].nonDiabetic);
         });
 
-        setPieData([{ labels, values, type: 'pie', textinfo: 'label+percent', hole: 0.4 }]);
+        setPieData([
+          {
+            labels,
+            values,
+            type: 'pie',
+            textinfo: 'label+percent',
+            hole: 0.4,
+          }
+        ]);
       });
   }, []);
 
@@ -54,7 +62,21 @@ const PieChartIncomeDiabetes = () => {
       <Plot
         data={pieData}
         layout={{
-          title: 'Diabetes Distribution Across Income Ranges',
+          title: 'Distribution of Diabetic vs Non-Diabetic Individuals by Income Range',
+          annotations: [
+            {
+              text: "Income Ranges:<br><30k, 30k–60k, 60k+<br>Split by Outcome",
+              x: 0.5,
+              y: -0.15,
+              showarrow: false,
+              font: {
+                size: 12
+              },
+              align: 'center',
+              xref: 'paper',
+              yref: 'paper'
+            }
+          ],
           height: 500,
         }}
       />

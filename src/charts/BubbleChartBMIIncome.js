@@ -7,7 +7,7 @@ const BubbleChartBMIIncome = () => {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv"
+      "https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv"
     )
       .then((res) => res.text())
       .then((csv) => {
@@ -54,8 +54,8 @@ const BubbleChartBMIIncome = () => {
         ]}
         layout={{
           title: "BMI vs. Income by Age and Diabetes Outcome",
-          xaxis: { title: "BMI" },
-          yaxis: { title: "Income ($)" },
+          xaxis: { title: "Body Mass Index (BMI)" },
+          yaxis: { title: "Annual Income (USD)" },
           height: 500,
         }}
       />

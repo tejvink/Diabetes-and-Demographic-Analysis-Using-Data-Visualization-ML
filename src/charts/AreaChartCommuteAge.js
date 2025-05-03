@@ -8,7 +8,8 @@ const AreaChartCommuteAge = () => {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv")
+      "https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv"
+    )
       .then((res) => res.text())
       .then((csv) => {
         const rows = csv.split("\n").slice(1).map(row => row.split(","));
@@ -66,9 +67,9 @@ const AreaChartCommuteAge = () => {
           },
         ]}
         layout={{
-          title: "Commute Time vs Age by Diabetes Outcome",
-          xaxis: { title: "Age" },
-          yaxis: { title: "Mean Commute (mins)" },
+          title: "Commute Time vs. Age by Diabetes Outcome",
+          xaxis: { title: "Patient Age (Years)" },
+          yaxis: { title: "Average Commute Time (Minutes)" },
           height: 500,
         }}
       />

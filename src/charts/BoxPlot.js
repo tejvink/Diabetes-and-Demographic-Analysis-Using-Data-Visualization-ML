@@ -7,7 +7,7 @@ const BoxPlot = () => {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv"
+      'https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv'
     )
       .then((res) => res.text())
       .then((csv) => {
@@ -55,7 +55,8 @@ const BoxPlot = () => {
         ]}
         layout={{
           title: 'Age Distribution of Diabetic vs Non-Diabetic Individuals',
-          yaxis: { title: 'Age' },
+          xaxis: { title: 'Diabetes Status' },
+          yaxis: { title: 'Age (Years)' },
           boxmode: 'group',
           height: 500,
         }}

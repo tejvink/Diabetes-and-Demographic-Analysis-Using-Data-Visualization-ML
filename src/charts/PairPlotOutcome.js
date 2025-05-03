@@ -1,4 +1,3 @@
-// PairPlotOutcome.js
 import React, { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 
@@ -12,7 +11,7 @@ const PairPlotOutcome = () => {
 
   useEffect(() => {
     fetch(
-      "https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv"
+      "https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv"
     )
       .then((res) => res.text())
       .then((csv) => {
@@ -41,16 +40,9 @@ const PairPlotOutcome = () => {
       });
   }, []);
 
-  // Filter diabetic and non-diabetic values separately
   const getFilteredData = (xData, yData) => {
-    const diabetic = {
-      x: [],
-      y: [],
-    };
-    const nonDiabetic = {
-      x: [],
-      y: [],
-    };
+    const diabetic = { x: [], y: [] };
+    const nonDiabetic = { x: [], y: [] };
 
     for (let i = 0; i < data.outcome.length; i++) {
       if (data.outcome[i] === "Diabetic") {
@@ -70,7 +62,6 @@ const PairPlotOutcome = () => {
       <h2>Pair Plot of Glucose, BMI, and Age by Outcome</h2>
       <Plot
         data={[
-          // Glucose vs BMI
           {
             x: getFilteredData(data.glucose, data.bmi).diabetic.x,
             y: getFilteredData(data.glucose, data.bmi).diabetic.y,
@@ -78,6 +69,8 @@ const PairPlotOutcome = () => {
             type: "scatter",
             marker: { color: "#e41a1c", size: 7 },
             name: "Glucose vs BMI (Diabetic)",
+            xaxis: "x1",
+            yaxis: "y1",
           },
           {
             x: getFilteredData(data.glucose, data.bmi).nonDiabetic.x,
@@ -86,9 +79,10 @@ const PairPlotOutcome = () => {
             type: "scatter",
             marker: { color: "#377eb8", size: 7 },
             name: "Glucose vs BMI (Non-Diabetic)",
+            xaxis: "x1",
+            yaxis: "y1",
           },
 
-          // Glucose vs Age
           {
             x: getFilteredData(data.glucose, data.age).diabetic.x,
             y: getFilteredData(data.glucose, data.age).diabetic.y,
@@ -96,6 +90,8 @@ const PairPlotOutcome = () => {
             type: "scatter",
             marker: { color: "#fb8072", size: 7 },
             name: "Glucose vs Age (Diabetic)",
+            xaxis: "x2",
+            yaxis: "y2",
           },
           {
             x: getFilteredData(data.glucose, data.age).nonDiabetic.x,
@@ -104,9 +100,10 @@ const PairPlotOutcome = () => {
             type: "scatter",
             marker: { color: "#6baed6", size: 7 },
             name: "Glucose vs Age (Non-Diabetic)",
+            xaxis: "x2",
+            yaxis: "y2",
           },
 
-          // BMI vs Age
           {
             x: getFilteredData(data.bmi, data.age).diabetic.x,
             y: getFilteredData(data.bmi, data.age).diabetic.y,
@@ -114,6 +111,8 @@ const PairPlotOutcome = () => {
             type: "scatter",
             marker: { color: "#fcae91", size: 7 },
             name: "BMI vs Age (Diabetic)",
+            xaxis: "x3",
+            yaxis: "y3",
           },
           {
             x: getFilteredData(data.bmi, data.age).nonDiabetic.x,
@@ -122,15 +121,21 @@ const PairPlotOutcome = () => {
             type: "scatter",
             marker: { color: "#9ecae1", size: 7 },
             name: "BMI vs Age (Non-Diabetic)",
+            xaxis: "x3",
+            yaxis: "y3",
           },
         ]}
         layout={{
           title: "Pair Plot: Glucose, BMI, and Age Colored by Outcome",
-          height: 550,
-          width: 1200,
+          grid: { rows: 3, columns: 1, pattern: "independent" },
+          height: 900,
           showlegend: true,
-          xaxis: { title: "Feature X" },
-          yaxis: { title: "Feature Y" },
+          xaxis: { title: "Glucose", domain: [0, 1] },
+          yaxis: { title: "BMI" },
+          xaxis2: { title: "Glucose", domain: [0, 1], anchor: "y2" },
+          yaxis2: { title: "Age", anchor: "x2" },
+          xaxis3: { title: "BMI", domain: [0, 1], anchor: "y3" },
+          yaxis3: { title: "Age", anchor: "x3" },
         }}
       />
     </div>

@@ -6,7 +6,7 @@ const BarChartAverageBMI = () => {
   const [bmiAverages, setBmiAverages] = useState([]);
 
   useEffect(() => {
-    fetch("https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv")
+    fetch("https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv")
       .then(res => res.text())
       .then(csv => {
         const rows = csv.split("\n").slice(1);
@@ -35,7 +35,6 @@ const BarChartAverageBMI = () => {
       });
   }, []);
 
-  // Normalize BMI values for gradient mapping
   const minBMI = Math.min(...bmiAverages);
   const maxBMI = Math.max(...bmiAverages);
   const normalizedColors = bmiAverages.map(bmi =>
@@ -52,7 +51,7 @@ const BarChartAverageBMI = () => {
           y: bmiAverages,
           marker: {
             color: normalizedColors,
-            colorscale: 'YlOrRd', // Try 'YlOrRd' or 'Plasma' for vivid colors
+            colorscale: 'YlOrRd',
             colorbar: {
               title: 'Normalized BMI',
               thickness: 15
@@ -61,8 +60,8 @@ const BarChartAverageBMI = () => {
         }]}
         layout={{
           title: 'Average BMI by State',
-          xaxis: { title: 'State', tickangle: -45 },
-          yaxis: { title: 'Average BMI' },
+          xaxis: { title: 'State Name', tickangle: -45 },
+          yaxis: { title: 'Body Mass Index (BMI)' },
           height: 500,
           margin: { t: 50, l: 60, r: 30, b: 120 }
         }}

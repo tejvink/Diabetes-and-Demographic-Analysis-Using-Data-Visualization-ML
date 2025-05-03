@@ -5,7 +5,7 @@ const ScatterPovertyDiabetesRate = () => {
   const [plotData, setPlotData] = useState([]);
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/tejvink/SDV_diabetes_dashboard/refs/heads/main/final_merged_dataset.csv')
+    fetch('https://raw.githubusercontent.com/tejvink/Diabetes-and-Demographic-Analysis-Using-Data-Visualization-ML/main/final_merged_dataset.csv')
       .then(res => res.text())
       .then(csv => {
         const rows = csv.split('\n').slice(1);
@@ -14,8 +14,8 @@ const ScatterPovertyDiabetesRate = () => {
         rows.forEach(row => {
           const cols = row.split(',');
           const state = cols[0];
-          const outcome = parseInt(cols[5]);
-          const poverty = parseFloat(cols[7]);
+          const outcome = parseInt(cols[5]);    // Diabetes Outcome
+          const poverty = parseFloat(cols[7]);  // Poverty Rate
 
           if (!state || isNaN(outcome) || isNaN(poverty)) return;
 
@@ -45,7 +45,7 @@ const ScatterPovertyDiabetesRate = () => {
           x.push(avgPoverty);
           y.push(diabetesRate);
           hoverText.push(
-            `State: ${state}<br>Poverty Rate: ${avgPoverty.toFixed(1)}%<br>Diabetes Rate: ${diabetesRate.toFixed(1)}%`
+            `State: ${state}<br>Avg. Poverty Rate: ${avgPoverty.toFixed(1)}%<br>Diabetes Rate: ${diabetesRate.toFixed(1)}%`
           );
         });
 
@@ -68,20 +68,18 @@ const ScatterPovertyDiabetesRate = () => {
 
   return (
     <div>
-      <h2>Poverty vs Diabetes Rate</h2>
+      <h2>Scatter Plot: Poverty Rate vs Diabetes Rate</h2>
       <Plot
         data={plotData}
         layout={{
+          title: 'Relationship Between Poverty and Diabetes Rate by State',
+          xaxis: { title: 'Average Poverty Rate (%) per State' },
+          yaxis: { title: 'Diabetes Rate (%) per State' },
           height: 500,
           width: 800,
-          title: 'Diabetes Rate vs. Poverty Level by State',
-          xaxis: { title: 'Average Poverty Rate (%)' },
-          yaxis: { title: 'Diabetes Rate (%)' },
           showlegend: false
         }}
-        config={{
-          responsive: true
-        }}
+        config={{ responsive: true }}
       />
     </div>
   );
